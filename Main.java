@@ -1,36 +1,12 @@
-import decorator.*;
-import hero.*;
+import facade.ShopFacade;
 
 public class Main {
     public static void main(String[] args) {
-        IHero Invoker = new Invoker();
-        IHero NagaSiren = new NagaSiren();
+        ShopFacade shopFacade = new ShopFacade();
 
-        System.out.println(Invoker.getDescription() + " | В кармане "
-                + Invoker.getPrice() + " золота");
-        System.out.println(NagaSiren.getDescription() + " | В кармане "
-                + NagaSiren.getPrice() + " золота");
+        int playerGold = 4500;
+        String[] playerInventory = new String[6];
 
-        IHero InvokerWithBlinkDagger = new BlinkDaggerDecorator(new Invoker());
-        System.out.println(InvokerWithBlinkDagger.getDescription());
-        System.out.println(InvokerWithBlinkDagger.getPrice());
-
-        IHero NagaWithAghanimsScepter = new AghanimsScepterDecorator(new NagaSiren());
-        System.out.println(NagaWithAghanimsScepter.getDescription());
-        System.out.println(NagaWithAghanimsScepter.getPrice());
-
-        IHero fullBuildInvoker = new AghanimsScepterDecorator
-                (new BlinkDaggerDecorator
-                        (new Invoker()));
-        System.out.println(fullBuildInvoker.getDescription());
-
-        System.out.println(fullBuildInvoker.getPrice());
-
-
-
-
-
-
-
+        shopFacade.purchaseItem("Aghanim's Scepter", 4200, playerGold, playerInventory);
     }
 }
